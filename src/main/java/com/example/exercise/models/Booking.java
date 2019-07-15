@@ -1,12 +1,16 @@
 package com.example.exercise.models;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.sql.Date;
 
 @Data
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 public class Booking {
 
     @Id
@@ -24,4 +28,24 @@ public class Booking {
     @ManyToOne
     private Vehicle vehicle;
 
+    public Booking(Date from, Date to) {
+        this.from = from;
+        this.to = to;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public Vehicle getVehicle() {
+        return vehicle;
+    }
+
+    public void setVehicle(Vehicle vehicle) {
+        this.vehicle = vehicle;
+    }
 }

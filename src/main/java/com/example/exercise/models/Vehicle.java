@@ -1,11 +1,8 @@
 package com.example.exercise.models;
 
-import lombok.Data;
-
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
-@Data
 @Entity
 public class Vehicle {
 
@@ -17,4 +14,15 @@ public class Vehicle {
     private int hp;
 
     private String name;
+
+    public Vehicle() {
+    }
+
+    public Vehicle(int id, int currentMilage, int hp, String name) {
+        this.id = id;
+        this.currentMilage = currentMilage;
+        this.hp = hp;
+        this.name = name;
+    }
+
 }
