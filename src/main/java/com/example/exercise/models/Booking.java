@@ -65,4 +65,8 @@ public class Booking {
     public void setTo(Date to) {
         this.to = to;
     }
+
+    public int getId() {
+        return id;
+    }
 }

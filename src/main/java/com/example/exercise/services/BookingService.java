@@ -1,5 +1,6 @@
 package com.example.exercise.services;
 
+import com.example.exercise.exceptions.BookingNotAvailableException;
 import com.example.exercise.models.Booking;
 import com.example.exercise.repositories.IBookingRepository;
 import org.springframework.stereotype.Service;
@@ -23,7 +24,12 @@ public class BookingService {
     }
 
     public Booking addBooking(Booking booking){
-        bookingRepository.save(booking);
+        if(bookingPeriodAvailable(booking)){
+            bookingRepository.save(booking);
+        }else{
+            throw new BookingNotAvailableException("Booking " + booking.getId() + " not available: " + booking.getFrom() + " | " + booking.getTo());
+        }
+
         return booking;
     }
 
@@ -46,5 +52,11 @@ public class BookingService {
             return bookingRepository.save(booking);
 
         }).orElseThrow(() -> new EntityNotFoundException("BookingID " + id + "not found"));
+    }
+
+    public boolean bookingPeriodAvailable(Booking booking){
+        return this.getBookingsForVehicle(booking.getVehicle().getId()).stream()
+                .filter((b) -> b.getFrom().getTime() <= booking.getTo().getTime()
+                        && b.getTo().getTime() >= booking.getFrom().getTime()).count() == 0l;
     }
 }
