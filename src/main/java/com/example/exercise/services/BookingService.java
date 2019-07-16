@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class BookingService {
@@ -28,6 +29,12 @@ public class BookingService {
 
     public Optional<Booking> getBookingById(int id){
         return bookingRepository.findById(id);
+    }
+
+    public List<Booking> getBookingsForVehicle(int id){
+        return bookingRepository.findAll().stream()
+                .filter((booking -> booking.getVehicle().getId()==id))
+                .collect(Collectors.toList());
     }
 
     public Booking update(int id, Booking upToDateBooking) {

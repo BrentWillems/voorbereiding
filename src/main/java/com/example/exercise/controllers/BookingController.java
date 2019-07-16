@@ -4,11 +4,13 @@ import com.example.exercise.models.Booking;
 import com.example.exercise.services.BookingService;
 import com.example.exercise.services.CustomerService;
 import com.example.exercise.services.VehicleService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/booking")
@@ -41,16 +43,17 @@ public class BookingController {
 
     @PostMapping
     public ResponseEntity addBooking(@RequestBody Booking booking){
-        boolean customerExists = customerService.getCustomerById(booking.getCustomer().getId()).isPresent();
-        boolean vehicleExists = vehicleService.getVehicleById(booking.getVehicle().getId()).isPresent();
-        if(!customerExists) {
-            customerService.addCustomer(booking.getCustomer());
-        }
-        if(!vehicleExists){
-            vehicleService.addVehicle(booking.getVehicle());
+
+        long ammountOfOverlappingBookingsForCar = bookingService.getBookingsForVehicle(booking.getVehicle().getId()).stream()
+                .filter((b) -> b.getFrom().getTime() <= booking.getTo().getTime()
+                        && b.getTo().getTime() >= booking.getFrom().getTime()).count();
+
+        if(ammountOfOverlappingBookingsForCar==0l){
+            bookingService.addBooking(booking);
+        }else {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Car is already in use for the selected period.");
         }
 
-        bookingService.addBooking(booking);
         return ResponseEntity.ok(booking);
     }
 
