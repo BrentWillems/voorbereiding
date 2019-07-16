@@ -1,6 +1,5 @@
 package com.example.exercise.services;
 
-import com.example.exercise.models.Customer;
 import com.example.exercise.models.Vehicle;
 import com.example.exercise.repositories.IVehicleRepository;
 import org.springframework.stereotype.Service;
@@ -30,7 +29,7 @@ public class VehicleService {
     public Vehicle update(int id, Vehicle upToDateVehicle) {
         return getVehicleById(id).map(vehicle -> {
             vehicle.setName(upToDateVehicle.getName());
-            vehicle.setCurrentMilage(upToDateVehicle.getCurrentMilage());
+            vehicle.setCurrentMileage(upToDateVehicle.getCurrentMileage());
             vehicle.setHp(upToDateVehicle.getHp());
             return vehicleRepository.save(vehicle);
 

@@ -16,14 +16,14 @@ public class Vehicle {
     @GeneratedValue
     private int id;
 
-    private int currentMilage;
+    private int currentMileage;
 
     private int hp;
 
     private String name;
 
-    public Vehicle( int currentMilage, int hp, String name) {
-        this.currentMilage = currentMilage;
+    public Vehicle(int currentMileage, int hp, String name) {
+        this.currentMileage = currentMileage;
         this.hp = hp;
         this.name = name;
     }
@@ -32,12 +32,12 @@ public class Vehicle {
         return id;
     }
 
-    public int getCurrentMilage() {
-        return currentMilage;
+    public int getCurrentMileage() {
+        return currentMileage;
     }
 
-    public void setCurrentMilage(int currentMilage) {
-        this.currentMilage = currentMilage;
+    public void setCurrentMileage(int currentMileage) {
+        this.currentMileage = currentMileage;
     }
 
     public int getHp() {
