@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Data
@@ -13,12 +14,24 @@ import javax.persistence.Id;
 public class Customer {
 
     @Id
+    @GeneratedValue
     private int id;
 
     private String name;
 
-    public Customer(int id, String name) {
-        this.id = id;
+    public Customer( String name) {
+        this.name = name;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
         this.name = name;
     }
 }

@@ -4,6 +4,7 @@ import com.example.exercise.models.Customer;
 import com.example.exercise.repositories.ICustomerRepository;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.Optional;
 
@@ -29,4 +30,11 @@ public class CustomerService {
         return customerRepository.findById(id);
     }
 
+    public Customer update(int id, Customer upToDateCustomer) {
+        return getCustomerById(id).map(customer -> {
+            customer.setName(upToDateCustomer.getName());
+            return customerRepository.save(customer);
+
+        }).orElseThrow(() -> new EntityNotFoundException("CustomerID " + id + "not found"));
+    }
 }

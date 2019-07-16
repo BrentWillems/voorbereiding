@@ -22,16 +22,16 @@ public class DataConfig {
                                       IVehicleRepository vehicleRepository){
         return (String... args) -> {
 
-            Vehicle vehicle1 = new Vehicle(0,10000,80,"testcar1");
-            Vehicle vehicle2 = new Vehicle(1,50000,120,"testcar2");
+            Vehicle vehicle1 = new Vehicle(10000,80,"testcar1");
+            Vehicle vehicle2 = new Vehicle(50000,120,"testcar2");
 
             vehicleRepository.saveAll(Arrays.asList(
                     vehicle1,
                     vehicle2
             ));
 
-            Customer customer1 = new Customer(0,"john Doe");
-            Customer customer2 = new Customer(1,"jane Doe");
+            Customer customer1 = new Customer("john Doe");
+            Customer customer2 = new Customer("jane Doe");
 
 
             customerRepository.saveAll(Arrays.asList(

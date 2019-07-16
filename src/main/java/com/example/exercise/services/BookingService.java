@@ -4,6 +4,7 @@ import com.example.exercise.models.Booking;
 import com.example.exercise.repositories.IBookingRepository;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,5 +28,16 @@ public class BookingService {
 
     public Optional<Booking> getBookingById(int id){
         return bookingRepository.findById(id);
+    }
+
+    public Booking update(int id, Booking upToDateBooking) {
+        return getBookingById(id).map(booking -> {
+            booking.setCustomer(upToDateBooking.getCustomer());
+            booking.setVehicle(upToDateBooking.getVehicle());
+            booking.setTo(upToDateBooking.getTo());
+            booking.setFrom(upToDateBooking.getFrom());
+            return bookingRepository.save(booking);
+
+        }).orElseThrow(() -> new EntityNotFoundException("BookingID " + id + "not found"));
     }
 }

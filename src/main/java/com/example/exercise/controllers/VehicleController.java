@@ -24,7 +24,7 @@ public class VehicleController {
         return ResponseEntity.ok(vehicles);
     }
 
-    @GetMapping("/id")
+    @GetMapping("/{id}")
     public ResponseEntity getCustomerById(@PathVariable("id") int id){
         Optional<Vehicle> customer = vehicleService.getVehicleById(id);
         if(customer.isPresent()){
@@ -34,8 +34,14 @@ public class VehicleController {
     }
 
     @PostMapping
-    public ResponseEntity addVehicle(Vehicle vehicle){
+    public ResponseEntity addVehicle(@RequestBody Vehicle vehicle){
         vehicleService.addVehicle(vehicle);
         return ResponseEntity.ok(vehicle);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity updateCustomer(@PathVariable int id, @RequestBody Vehicle vehicle){
+        vehicleService.update(id, vehicle);
+        return ResponseEntity.noContent().build();
     }
 }
