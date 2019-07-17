@@ -1,0 +1,22 @@
+version: '3.7'
+services:
+  application:
+    image: brentwillems/exercise:latest
+    ports:
+      - 8080:8080
+    depends_on:
+      - application-db
+    environment:
+      SPRING_DATASOURCE_URL: "jdbc:mysql://application-db/booking"
+      SPRING_DATASOURCE_USERNAME: "dbuser"
+      SPRING_DATASOURCE_PASSWORD: "dbpass"
+
+
+  application-db:
+    image: mysql:8.0.16
+    environment:
+      MYSQL_ROOT_PASSWORD: "password"
+      MYSQL_USER: "dbuser"
+      MYSQL_PASSWORD: "dbpass"
+      MYSQL_DATABASE: "booking"
+      MYSQL_ONETIME_PASSWORD: "true"
