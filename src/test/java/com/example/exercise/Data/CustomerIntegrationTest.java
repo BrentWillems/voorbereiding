@@ -1,7 +1,7 @@
 package com.example.exercise.Data;
 
 import com.example.exercise.models.Customer;
-import com.example.exercise.repositories.ICustomerRepository;
+import com.example.exercise.repositories.CustomerRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +21,7 @@ public class CustomerIntegrationTest {
     private TestEntityManager entityManager;
 
     @Autowired
-    private ICustomerRepository customerRepository;
+    private CustomerRepository customerRepository;
 
     @Test
     public void whenFindAllThenReturnCustomers(){

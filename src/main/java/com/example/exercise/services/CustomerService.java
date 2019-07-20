@@ -1,7 +1,7 @@
 package com.example.exercise.services;
 
 import com.example.exercise.models.Customer;
-import com.example.exercise.repositories.ICustomerRepository;
+import com.example.exercise.repositories.CustomerRepository;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
@@ -11,9 +11,9 @@ import java.util.Optional;
 @Service
 public class CustomerService {
 
-    private ICustomerRepository customerRepository;
+    private CustomerRepository customerRepository;
 
-    public CustomerService(ICustomerRepository customerRepository) {
+    public CustomerService(CustomerRepository customerRepository) {
         this.customerRepository = customerRepository;
     }
 

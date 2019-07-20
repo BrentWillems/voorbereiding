@@ -2,7 +2,7 @@ package com.example.exercise.services;
 
 import com.example.exercise.exceptions.BookingNotAvailableException;
 import com.example.exercise.models.Booking;
-import com.example.exercise.repositories.IBookingRepository;
+import com.example.exercise.repositories.BookingRepository;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
@@ -13,9 +13,9 @@ import java.util.stream.Collectors;
 @Service
 public class BookingService {
 
-    private IBookingRepository bookingRepository;
+    private BookingRepository bookingRepository;
 
-    public BookingService(IBookingRepository bookingRepository){
+    public BookingService(BookingRepository bookingRepository){
         this.bookingRepository = bookingRepository;
     }
 

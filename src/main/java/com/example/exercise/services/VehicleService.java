@@ -1,7 +1,7 @@
 package com.example.exercise.services;
 
 import com.example.exercise.models.Vehicle;
-import com.example.exercise.repositories.IVehicleRepository;
+import com.example.exercise.repositories.VehicleRepository;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
@@ -11,9 +11,9 @@ import java.util.Optional;
 @Service
 public class VehicleService {
 
-    private IVehicleRepository vehicleRepository;
+    private VehicleRepository vehicleRepository;
 
-    public VehicleService(IVehicleRepository vehicleRepository) {
+    public VehicleService(VehicleRepository vehicleRepository) {
         this.vehicleRepository = vehicleRepository;
     }
 

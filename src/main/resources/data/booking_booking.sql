@@ -1,0 +1,1 @@
+INSERT INTO booking.booking (id, from_date, to_date, customer_id, vehicle_id) VALUES (5, '2019-07-17 12:00:14', '2019-07-17 12:00:14', 3, 1);
